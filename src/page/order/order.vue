@@ -1,6 +1,8 @@
 <template>
-  <div>
-    订单
+  <div class="order">
+  
+    
+    
     <tab-bar></tab-bar>
   </div>
 </template>
@@ -15,5 +17,8 @@ import tabBar from '@/components/tabBar/tabBar'
 </script>
 
 <style lang="less" scoped>
+.order{
+
+}
 
 </style>

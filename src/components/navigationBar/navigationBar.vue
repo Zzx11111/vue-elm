@@ -29,7 +29,7 @@ export default {};
   padding: 0 8px;
   display: flex;
   .left {
-    width: 70px;
+    width: 80px;
     font-size:16px;
   }
   .center {
@@ -47,7 +47,8 @@ export default {};
   }
   .right {
     font-size: 16px;
-    width: 70px;
+    width: 80px;
+    text-align: center;
   }
 }
 </style>

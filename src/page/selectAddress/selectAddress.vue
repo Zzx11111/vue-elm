@@ -86,12 +86,10 @@ export default {
     nextPage(index,geohash){
       let chooseAddress = this.addressList[index]
       let historyAddress = JSON.parse(window.localStorage.getItem('historyAddress'))
-      console.log(historyAddress)
       if(historyAddress){
         this.historyAddress = historyAddress
         let checkrepeat = false;
         historyAddress.find(item => {
-          console.log(item)
           if(item.geohash === geohash){
             checkrepeat = true
           }
@@ -107,7 +105,6 @@ export default {
       this.$router.push({path:'/msite',query:{geohash:this.addressList[index].geohash}})
     },
     clearHistory(){
-      console.log('aaa')
       window.localStorage.removeItem('historyAddress')
       this._getInit()
     }

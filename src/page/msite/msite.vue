@@ -8,7 +8,8 @@
       </div>
       <div slot="center" @click="backHome">{{addressInfo.name}}</div>
       <div slot="right">
-        <router-link to="/login" style="color:#fff">登录|注册</router-link>
+        <router-link to="/login" style="color:#fff" v-if="!userInfo">登录|注册</router-link>
+        <router-link to="/profile" style="color:#fff" v-if="userInfo"><van-icon name="contact" /></router-link>
       </div>
     </navigation-bar>
     <!-- 食品类别轮播 -->
@@ -49,7 +50,8 @@ export default {
       baseImgUrl: "https://fuss10.elemecdn.com",
       shopList: [],
       offset: 0,
-      geohash:""
+      geohash:"",
+      userInfo:null
     };
   },
   created() {
@@ -57,6 +59,7 @@ export default {
     this._getLocation();
     this._getIndexEntry();
     this._getShop();
+    this.userInfo =this.$store.state.userInfo 
   },
   mounted() {
     window.addEventListener("scroll", this.scrollHandle);

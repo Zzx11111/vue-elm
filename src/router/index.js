@@ -14,7 +14,6 @@ export default new Router({
       path: '/home',
       name: 'home',
       component:() => import('@/page/home/home'),
-      
     },
     {
       path:'/selectAddress/:id',
@@ -47,6 +46,18 @@ export default new Router({
     {
       path:'/shopInfo',
       component:() => import('@/page/shopInfo/shopInfo')
+    },
+    {
+      path:'/foodRating',
+      component:() => import('@/components/foodRating')
+    },
+    {
+      path:'/shopDetail/:id',
+      component:() => import('@/page/shopInfo/chlid/shopDetail')
+    },
+    {
+      path:'/resetPassword',
+      component:() => import('@/page/login/chlid/resetPassword')
     }
   ]
 })

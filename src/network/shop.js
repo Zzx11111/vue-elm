@@ -37,3 +37,35 @@ export function getRestaurantsInfo(id){
     url:`/shopping/restaurant/${id}`,
   })
 }
+
+//商品列表信息
+export function getFoodMenu(id){
+  return request({
+    url:`/shopping/v2/menu`,
+    params:{
+      restaurant_id:id
+    }
+  })
+}
+
+//获取商品评价
+export function getRatings(id){
+  return request({
+    url:`/ugc/v2/restaurants/${id}/ratings`
+  })
+}
+
+//获取店铺分数
+export function getRatingsScores(id){
+  return request({
+    url:`/ugc/v2/restaurants/${id}/ratings/scores`
+  })
+}
+
+//评价分类
+
+export function getRatingTag(id){
+  return request({
+    url:`/ugc/v2/restaurants/${id}/ratings/tags`
+  })
+}

@@ -3,7 +3,7 @@
     <navigation-bar>
       <div slot="left">elm-me</div>
       <div slot="right">
-       <router-link to="/login" style="color:#fff;"> 登录|注册</router-link>
+        <router-link to="/login" style="color:#fff;">登录|注册</router-link>
       </div>
     </navigation-bar>
     <div class="city-position">
@@ -17,72 +17,93 @@
       </div>
     </div>
     <city title="热门城市" :city="hotCity" @selectAddress="selectAddress"></city>
-    <city v-for="(item,index) in groupCity" :key="index" :city="item" :title="index" @selectAddress="selectAddress"></city>
+    <div v-if="groupCity">
+      <city
+        v-for="(item,index) in groupCity"
+        :key="index"
+        :city="item"
+        :title="index"
+        @selectAddress="selectAddress"
+      ></city>
+    </div>
   </div>
 </template>
 
 <script>
-import navigationBar from '@/components/navigationBar/navigationBar'
-import {getCity} from '@/network/city'
-import City from './child/city'
-  export default {
-    components:{
-      navigationBar,
-      City
-    },
-    data() {
-      return {
-        hotCity:[],
-        groupCity:{},
-        guessCity:{}
-      }
-    },
-    created(){
-      getCity('hot').then(res => {
-        this.hotCity = res.data
-      })
-      getCity('group').then(res => {
-        Object.keys(res.data).sort().map(item => {
-          this.groupCity[item] = res.data[item]
-        })
-      })
-      getCity('guess').then(res => {
-        this.guessCity = res.data
-      })
-    },
-    methods:{
-      selectAddress(city){
-        this.$router.push(`/selectAddress/${city.id}`)
-        
-      }
+import navigationBar from "@/components/navigationBar/navigationBar";
+import { getCity } from "@/network/city";
+import City from "./child/city";
+export default {
+  components: {
+    navigationBar,
+    City
+  },
+  data() {
+    return {
+      hotCity: [],
+      groupCity: {},
+      guessCity: {}
+    };
+  },
+  created() {
+    getCity("hot").then(res => {
+      this.hotCity = res.data;
+    });
+    getCity("group").then(res => {
+      Object.keys(res.data)
+        .sort()
+        .map(item => {
+          this.groupCity[item] = res.data[item];
+        });
+    });
+    getCity("guess").then(res => {
+      this.guessCity = res.data;
+    });
+  },
+  methods: {
+    selectAddress(city) {
+      this.$router.push(`/selectAddress/${city.id}`);
+    }
+  },
+  watch: {
+    guessCity: function() {
+      getCity("group").then(res => {
+        Object.keys(res.data)
+          .sort()
+          .map(item => {
+            this.groupCity[item] = res.data[item];
+          });
+      });
+      
     }
   }
+};
 </script>
 
 <style lang="less" scoped>
-.position-top{
+.position-top {
   font-size: 12px;
   height: 40px;
   line-height: 40px;
   padding: 0 8px;
-  span{
-    color:#9f9f9f;
+  span {
+    color: #9f9f9f;
   }
-  .current{
+  .current {
     color: black;
-    margin-right: 30px;
+    margin-right: 5px;
   }
 }
-.position-bottom{
+.position-bottom {
   border-top: 1px solid #e4e4e4;
   height: 40px;
   line-height: 40px;
   padding: 0 8px;
   font-size: 16px;
-  span{
+  span {
     color: #3190e8;
   }
-  .van-icon{
+  .van-icon {
     float: right;
     line-height: 40px;
   }
