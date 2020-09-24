@@ -1,2 +1,6 @@
 export const SAVE_GEOHASH = 'save_geohash'
 export const SAVE_USERINFO = 'save_userinfo'
+export const SAVE_REMARK = 'save_remark'
+export const SAVE_ADDRESS = 'save_address'
+export const CHOOSE_ADDRESS = 'choose_address'
+export const SIGN_OUT = 'sign_out'

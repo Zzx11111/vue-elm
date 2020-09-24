@@ -58,6 +58,26 @@ export default new Router({
     {
       path:'/resetPassword',
       component:() => import('@/page/login/chlid/resetPassword')
+    },
+    {
+      path:'/confirmOrder',
+      component:() => import('@/page/confirmOrder/confirmOrder')
+    },
+    {
+      path:'/remarks',
+      component:() => import('@/page/confirmOrder/child/remarks')
+    },
+    {
+      path:'/shippingAddress',
+      component:() => import('@/page/confirmOrder/child/shippingAddress')
+    },
+    {
+      path:'/addAddress',
+      component:() => import('@/page/confirmOrder/child/addAddress')
+    },
+    {
+      path:'/searchAddress',
+      component:() => import('@/page/confirmOrder/child/searchAddress')
     }
   ]
 })

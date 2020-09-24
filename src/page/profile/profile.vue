@@ -28,7 +28,7 @@
         <p>暂无绑定手机号</p>
       </div>
       <div class="header-right">
-        <van-icon name="arrow" @click="goPath('/login')" />
+        <van-icon name="arrow" />
       </div>
     </section>
     
@@ -52,10 +52,13 @@
         <p>我的积分</p>
       </div>
     </section>
-    <div class="order">
+    <div class="order"  @click="goPath('/order')">
       <van-icon name="coupon-o" />
       <span>我的订单</span>
-      <span><van-icon name="arrow" @click="goPath('/order')" /></span>
+      <span><van-icon name="arrow" /></span>
+    </div>
+    <div class="sign-out" @click="signOut">
+      退出
     </div>
     <tab-bar></tab-bar>
   </div>
@@ -64,6 +67,8 @@
 <script>
 import navigationBar from "@/components/navigationBar/navigationBar";
 import tabBar from "@/components/tabBar/tabBar";
+import {signOut} from '@/network/user'
+import {SIGN_OUT} from '@/store/mutation-types'
 export default {
   components: {
     tabBar,
@@ -78,6 +83,7 @@ export default {
   },
   created(){
     this.userInfo = this.$store.state.userInfo
+    console.log(this.userInfo)
   },
   methods: {
     goback() {
@@ -86,6 +92,14 @@ export default {
     goPath(path) {
       this.$router.push(path);
     },
+    signOut(){
+      signOut().then(res => {
+        console.log(res)
+        this.$toast(res.data.message)
+      })
+      this.$store.commit(SIGN_OUT,null)
+      this.$router.push('/login')
+    }
   },
 };
 </script>
@@ -149,6 +163,13 @@ export default {
       flex: 1;
       margin-left: 5px;
     }
+  }
+  .sign-out{
+    text-align: center;
+    height: 34px;
+    color: #fff;
+    line-height: 34px;
+    background-color: #ff5f3e;
   }
 }
 </style>

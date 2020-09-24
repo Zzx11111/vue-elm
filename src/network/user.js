@@ -34,3 +34,18 @@ export function changePassword(username,oldpassWord,newpassword,confirmpassword,
     }
   })
 }
+
+//用户信息
+export function getUserInfo(){
+  return request({
+    url:"/v1/user"
+  })
+}
+
+
+//退出
+export function signOut(){
+  return request({
+    url:"/v2/signout"
+  })
+}

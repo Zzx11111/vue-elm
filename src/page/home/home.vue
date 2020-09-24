@@ -3,7 +3,8 @@
     <navigation-bar>
       <div slot="left">elm-me</div>
       <div slot="right">
-        <router-link to="/login" style="color:#fff;">登录|注册</router-link>
+        <router-link to="/login" style="color:#fff" v-if="!userInfo">登录|注册</router-link>
+        <router-link to="/profile" style="color:#fff" v-if="userInfo"><van-icon name="contact" /></router-link>
       </div>
     </navigation-bar>
     <div class="city-position">
@@ -42,14 +43,17 @@ export default {
     return {
       hotCity: [],
       groupCity: {},
-      guessCity: {}
+      guessCity: {},
+     /*  userInfo:null */
     };
   },
   created() {
+    /* this.userInfo = this.$store.state.userInfo */
     getCity("hot").then(res => {
       this.hotCity = res.data;
     });
     getCity("group").then(res => {
+      console.log(res)
       Object.keys(res.data)
         .sort()
         .map(item => {
@@ -63,6 +67,11 @@ export default {
   methods: {
     selectAddress(city) {
       this.$router.push(`/selectAddress/${city.id}`);
+    }
+  },
+  computed:{
+    userInfo(){
+      return this.$store.state.userInfo
     }
   },
   watch: {

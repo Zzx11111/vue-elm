@@ -82,7 +82,7 @@ export default {
         }else{
           this.userInfo = res.data
           this.$store.dispatch(SAVE_USERINFO,this.userInfo)
-          window.localStorage.setItem('save_userInfo',JSON.stringify(this.userInfo))
+         /*  window.localStorage.setItem('save_userInfo',JSON.stringify(this.userInfo)) */
           this.$router.go(-1)
         }
       })

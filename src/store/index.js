@@ -4,14 +4,18 @@ import mutations from './mutations'
 import actions from './actions'
 
 Vue.use(Vuex)
-const userinfo = JSON.parse(window.localStorage.getItem('save_userInfo'))
+console.log('a')
 const store = new Vuex.Store({
   state:{
     geohash:'31.22299,121.36025',
-    userInfo:userinfo
+    userInfo:null,
+    remark:'',
+    address:null,
+    chooseAddress:null
   },
-  mutations,
-  actions
+  actions,
+  mutations
+  
 })
 
 export default store

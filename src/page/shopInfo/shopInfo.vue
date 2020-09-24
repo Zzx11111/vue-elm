@@ -64,7 +64,7 @@
         <p>配送费{{shopInfo.float_delivery_fee}}</p>
       </div>
       <div class="settlement" :class="[showSettlement == true ? 'show-settlement':'']">
-        <p v-if="showSettlement == true">去结算</p>
+        <p v-if="showSettlement == true" @click="confirmOrder">去结算</p>
         <p v-if="showSettlement == false">还差{{shopInfo.float_minimum_order_amount - totalPrice}}元</p>
       </div>
     </section>
@@ -255,6 +255,10 @@ export default {
     chooseFoodSpecifications(specfoodsItem) {
       this.specfood = specfoodsItem;
     },
+    /* 去结算 */
+    confirmOrder(){
+      this.$router.push({path:'/confirmOrder',query:{shopId:this.shopInfo.id,geohash:`${this.shopInfo.latitude},${this.shopInfo.longitude}`}})
+    }
   },
   computed: {
     showSettlement() {
