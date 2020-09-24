@@ -1,6 +1,6 @@
 # vue-elm
 
-> A Vue.js project
+> vue写的仿饿了么项目
 
 ## Build Setup
 
