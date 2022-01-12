@@ -10,7 +10,7 @@ export default {
   name: 'App',
   created(){
     this.$store.dispatch('getUser')
-    console.log('sss');
+    console.log('bbbbbb');
   }
 }
 </script>
